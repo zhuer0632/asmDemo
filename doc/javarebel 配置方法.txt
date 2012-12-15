@@ -1,0 +1,66 @@
+JavaRebel 是一个JVM插件(-javaagent)，能够即时重载java class更改，因此不需要重新部署一个应用或者重启容器，节约开发者时间。
+
+ 
+ 
+ 
+ 
+-noverify -javaagent:D:\javarebel.jar 
+-Xms800m -Xmx800m -XX:PermSize=256m -XX:MaxPermSize=256m
+ 
+ 
+ 
+
+在tomcat上配置步骤如下：
+
+javarebel.jar包不可改名，
+javarebel.lic放同目录
+
+1)
+tomcat安装版打开bin\tomcat6w.exe
+java标签，java options的文本框 添加
+-Xverify:none
+-Xms128m
+-Xmx512m
+-XX:PermSize=128M
+-XX:MaxPermSize=256m
+-javaagent:d:\javarebel.jar
+
+注意设大点 -Xms之类，防止OutOfMemoryException
+
+
+2)tomcat绿色版的话 bin\catalina.bat 
+查找set JAVA_OPTS=%JAVA_OPTS% %LOGGING_MANAGER%
+后面加上
+
+set JAVA_OPTS=%JAVA_OPTS% -noverify -javaagent:d:\javarebel.jar
+set JAVA_OPTS=%JAVA_OPTS% -Xms800m -Xmx800m -XX:PermSize=256m -XX:MaxPermSize=256m
+
+
+rem ----- Execute The Requested Command ---------------------------------------
+
+------------
+3)
+
+
+-noverify -javaagent:D:\javarebel.jar
+-Drebel.spring_plugin=true
+-Xms800m -Xmx800m -XX:PermSize=256m -XX:MaxPermSize=256m
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
